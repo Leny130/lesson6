@@ -13,3 +13,21 @@ Ver Cluster Port Status Owner    Data directory               Log file
 16  main2   5433 down   postgres /var/lib/postgresql/16/main2 /var/log/postgresql/postgresql-16-main2.log
 root@ilinsinc:~# pg_lsclusters
 ```
+
+```
+ cat >> /etc/postgresql/16/main/postgresql.conf << EOL
+listen_addresses = '192.168.1.2'
+EOL
+postgres@ilinsinc:/home/ilin.leonid2$ cd
+postgres@ilinsinc:~$ cat >> /etc/postgresql/16/main/postgresql.conf << EOL
+listen_addresses = '192.168.1.2'
+EOL
+postgres@ilinsinc:~$ cat >> /etc/postgresql/16/main/pg_hba.conf << EOL
+host replication replicator 198.168.0.0/16 scram-sha-256
+EOL
+postgres@ilinsinc:~$ pg_ctlcluster 16 main stop && pg_ctlcluster 16 main start
+Warning: stopping the cluster using pg_ctlcluster will mark the systemd unit as failed. Consider using systemctl:
+  sudo systemctl stop postgresql@16-main
+Warning: the cluster will not be running as a systemd service. Consider using systemctl:
+  sudo systemctl start postgresql@16-main
+```
