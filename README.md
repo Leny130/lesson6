@@ -31,3 +31,10 @@ Warning: stopping the cluster using pg_ctlcluster will mark the systemd unit as 
 Warning: the cluster will not be running as a systemd service. Consider using systemctl:
   sudo systemctl start postgresql@16-main
 ```
+Спустя 12 часов заработало)) пока не указал имя хоста внутренний ip
+
+```
+postgres@pgsinc:/home/ilin.leonid2$ pg_lsclusters
+Ver Cluster Port Status        Owner    Data directory              Log file
+16  main    5432 down,recovery postgres /var/lib/postgresql/16/main /var/log/postgresql/postgresql-16-main.log
+```
